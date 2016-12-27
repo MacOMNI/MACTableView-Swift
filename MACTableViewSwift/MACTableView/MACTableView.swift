@@ -70,14 +70,21 @@ class MACTableView: UITableView {
     
     required init?(coder aDecoder: NSCoder){
         super.init(coder: aDecoder);
-
+        
         initUI()
     }
 
+
     convenience init(frame: CGRect) {
+        
         self.init(frame:frame, style:UITableViewStyle.plain);
     }
-
+    
+    convenience init(){
+        self.init(frame:.zero,style:.plain)
+        initUI()
+        
+    }
     
     func initUI(){
         self.separatorStyle = UITableViewCellSeparatorStyle.none
