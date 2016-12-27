@@ -22,7 +22,7 @@
 ## How to use
 * First Step 初始化 MACTableView ；
 
-```swift
+```Swift
    lazy var  tableView :MACTableView = {
         
        let tableView = MACTableView.init(frame: self.view.bounds)
@@ -38,7 +38,7 @@
 ```
 * Second Step 设置 MACTableView属性 并开始加载；
 
-```swift
+```Swift
     tableView.macTableViewDelegate  = self
     tableView.emptyImage = UIImage.init(named: "placeholder_dropbox")!
     tableView.emptyTitle = "This is your Dashboard."
@@ -47,16 +47,7 @@
 
 * Final Step 处理上拉下拉代理事件
 
-```swift
-#pragma mark MACTableViewDelegate
--(void)loadDataRefreshOrPull:(MACRefreshState)state{
-   if(state == MACRefreshing){//下拉刷新
-     //do something
-   }else {//加载更多
-     // do other thing
-   }
-  //异步(网络访问)请求后执行 [self.tableView endLoading] 结束刷新
-}
+```Swift
 extension ViewController:MACTableViewDelegate{
     func loadDataRefreshOrPull(state: MACRefreshState) {
 
@@ -72,7 +63,7 @@ extension ViewController:MACTableViewDelegate{
 ```
 * Additional Remark 对于有自定义 RefreshHeader 需求的，新建一个继承自 MACRefreshGifHeader 的类，设置相关属性，重写 initialize 方法即可
   
-```swift
+```Swift
 class MACRefreshHeader: MACRefreshGifHeader {
 
     override func prepare() {
@@ -99,7 +90,7 @@ class MACRefreshHeader: MACRefreshGifHeader {
 ### MACTableView
 
 这里对相关的参数变量、枚举类型、代理以及执行方法进行了详细的说明，您只需要根据具体情况设置相关属性，执行相应操作即可。
-```swift
+```Swift
 enum MACRefreshState{
    case refreshing /** 下拉刷新的状态 */
     case pulling  /** pull 加载更多刷新中的状态 */
