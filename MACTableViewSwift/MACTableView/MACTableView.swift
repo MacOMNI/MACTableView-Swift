@@ -24,16 +24,17 @@ protocol MACTableViewDelegate:class {
 }
 
 class MACTableView: UITableView {
-   @IBInspectable  var showEmpty = true  /**  是否展示空白页,默认展示*/
+    
+   @IBInspectable var showEmpty = true  /**  是否展示空白页,默认展示*/
    @IBInspectable var emptyTitle = ""  /**  空白标题 默认为 "",不显示*/
    @IBInspectable var emptySubTitle = "暂无数据"  /**  空白页展位图名称 默认为 nil,不显示*/
-   @IBInspectable  var emptyImage = UIImage.init() /**  空白页展位图名称 默认为 nil,不显示*/
-    
-   var emptyColor = UIColor.clear   /**  空白页颜色 默认为 clear*/
+   @IBInspectable var emptyImage = UIImage.init() /**  空白页展位图名称 默认为 nil,不显示*/
    @IBInspectable var emptyAttributedTitle:NSAttributedString? /**  空白自定义标题 默认不显示*/
    @IBInspectable var emptyAttributedSubTitle:NSAttributedString? /** 空白自定义副标题 默认不显示*/
-    
-    var macCanLoadState = MACCanLoadState.all {
+   
+   var emptyColor = UIColor.clear   /**  空白页颜色 默认为 clear*/
+
+   var macCanLoadState = MACCanLoadState.all {
         
         didSet {
             switch macCanLoadState {
@@ -116,7 +117,6 @@ class MACTableView: UITableView {
             });
         }else {
     
-         
         let gifHeader = NSClassFromString(MACRefreshGifHeader.className) as! MJRefreshGifHeader.Type
     
             let header = gifHeader.init()
@@ -139,7 +139,6 @@ class MACTableView: UITableView {
         } else if self.macCanLoadState == .all {
             self.mj_footer.isHidden = false
         }
-
     }
     func refreshData() {
         self.macTableViewDelegate?.loadDataRefreshOrPull(state: .refreshing)
@@ -167,8 +166,6 @@ class MACTableView: UITableView {
         
         return true
     }
-
-    
     
 }
 //MARK:代理方法

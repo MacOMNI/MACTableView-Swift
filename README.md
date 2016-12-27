@@ -1,4 +1,6 @@
 # MACTableView
+ * [Objective-C 版本](https://github.com/azheng51714/MACTableView)
+ 
 ##Projects using this library
 
 对 UITableView 空白页文字提示、空白页图片、上拉下拉事件等进行了高度封装，使用简单高效，并命名为MACTableView, 欢迎star & issue
@@ -12,7 +14,6 @@
 * 支持 Storyboard & Xib;
 * 支持 iOS 6 及以上;
 * 支持 iPhone & iPad.
-* [Objective-c 版本](https://github.com/azheng51714/MACTableView)
 
 ## Installation
 
@@ -20,7 +21,7 @@
  暂未提供
 
 ## How to use
-* First Step 初始化 MACTableView ；
+* Begin Step 初始化 MACTableView ；
 
 ```Swift
    lazy var  tableView :MACTableView = {
@@ -34,15 +35,8 @@
     }()
     func initUI(){
         self.view.addSubview(tableView)
+        self.tableView.beginLoading()
     }
-```
-* Second Step 设置 MACTableView属性 并开始加载；
-
-```Swift
-    tableView.macTableViewDelegate  = self
-    tableView.emptyImage = UIImage.init(named: "placeholder_dropbox")!
-    tableView.emptyTitle = "This is your Dashboard."
-    self.tableView.beginLoading()
 ```
 
 * Final Step 处理上拉下拉代理事件
@@ -105,16 +99,16 @@ protocol MACTableViewDelegate:class {
     func loadDataRefreshOrPull(state:MACRefreshState)
 }
 
- @IBInspectable  var showEmpty = true  /**  是否展示空白页,默认展示*/
-   @IBInspectable var emptyTitle = ""  /**  空白标题 默认为 "",不显示*/
-   @IBInspectable var emptySubTitle = "暂无数据"  /**  空白页展位图名称 默认为 nil,不显示*/
-   @IBInspectable  var emptyImage = UIImage.init() /**  空白页展位图名称 默认为 nil,不显示*/
-    
-   var emptyColor = UIColor.clear   /**  空白页颜色 默认为 clear*/
-   @IBInspectable var emptyAttributedTitle:NSAttributedString? /**  空白自定义标题 默认不显示*/
-   @IBInspectable var emptyAttributedSubTitle:NSAttributedString? /** 空白自定义副标题 默认不显示*/
-    
-    var macCanLoadState = MACCanLoadState.all {
+@IBInspectable var showEmpty = true  /**  是否展示空白页,默认展示*/
+@IBInspectable var emptyTitle = ""  /**  空白标题 默认为 "",不显示*/
+@IBInspectable var emptySubTitle = "暂无数据"  /**  空白页展位图名称 默认为 nil,不显示*/
+@IBInspectable var emptyImage = UIImage.init() /**  空白页展位图名称 默认为 nil,不显示*/
+@IBInspectable var emptyAttributedTitle:NSAttributedString? /**  空白自定义标题 默认不显示*/
+@IBInspectable var emptyAttributedSubTitle:NSAttributedString? /** 空白自定义副标题 默认不显示*/
+   
+ var emptyColor = UIColor.clear   /**  空白页颜色 默认为 clear*/
+
+ var macCanLoadState = MACCanLoadState.all {
         
         didSet {
             switch macCanLoadState {
@@ -132,15 +126,15 @@ protocol MACTableViewDelegate:class {
                 break
             }
         }
-    }
+ }
   
-   weak open var macTableViewDelegate: MACTableViewDelegate? {
+ weak open var macTableViewDelegate: MACTableViewDelegate? {
 
         didSet {
             self.delegate = macTableViewDelegate as? UITableViewDelegate
             self.dataSource = macTableViewDelegate as? UITableViewDataSource
         }
-    }
+  }
 
 ```
 ## License
